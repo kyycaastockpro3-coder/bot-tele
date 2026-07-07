@@ -1,0 +1,19 @@
+{
+  "name": "bot-telegram-jualan-otomatis",
+  "version": "1.0.0",
+  "description": "Bot Telegram untuk jualan produk digital otomatis",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "check": "node --check src/index.js && node --check api/bot.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "qrcode": "^1.5.4",
+    "telegraf": "^4.16.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
