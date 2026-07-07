@@ -501,7 +501,7 @@ bot.hears(['Katalog', '🛍️ Katalog'], async (ctx) => {
 
 bot.action('menu:guide', async (ctx) => {
   await ctx.answerCbQuery('Memuat...');
-  await editOrReply(ctx, ['📝 Cara belinya gampang banget:', '', '1. Buka 🛍️ Katalog', '2. Pilih produk yang kamu mau', '3. Scan QRIS sesuai nominal', '4. Tekan Saya sudah membayar', '5. Admin konfirmasi, produk langsung dikirim', '', '💳 Pembayaran:', paymentInfo].join('\n'), Markup.inlineKeyboard([[Markup.button.callback('⬅️ Kembali', 'menu:home')]]));
+  await editOrReply(ctx, ['╭─ 〔 CARA BELI 〕 ─╮', '│ 1. Tekan menu 🛍️ Katalog', '│ 2. Pilih list produk', '│ 3. Pilih variasi/durasi produk', '│ 4. Tekan tombol 🛒 Beli', '│ 5. Scan QRIS yang dikirim bot', '│ 6. Nominal QRIS otomatis sesuai harga', '│ 7. Setelah bayar, tekan ✅ Saya sudah membayar', '│ 8. Tunggu admin accept pembayaran', '│ 9. Jika sudah di-ACC, stok/data akun dikirim otomatis', '╰───────────────────────╯', '', 'Jika ada kendala, tekan tombol Bantuan untuk chat owner.'].join('\n'), Markup.inlineKeyboard([[Markup.button.callback('⬅️ Kembali', 'menu:home')]]));
 });
 
 bot.action('menu:help', async (ctx) => {
@@ -523,7 +523,7 @@ bot.action('menu:orders', async (ctx) => {
 });
 
 bot.hears(['Cara Beli', '📝 Cara Beli'], async (ctx) => {
-  await ctx.reply(['📝 Cara belinya gampang banget:', '', '1. Buka 🛍️ Katalog', '2. Pilih produk yang kamu mau', '3. Transfer sesuai nominal', '4. Kirim foto bukti transfer ke bot ini', '5. Admin konfirmasi, produk langsung dikirim', '', '💳 Pembayaran:', paymentInfo].join('\n'), mainMenu(ctx));
+  await replyClean(ctx, ['╭─ 〔 CARA BELI 〕 ─╮', '│ 1. Tekan menu 🛍️ Katalog', '│ 2. Pilih list produk', '│ 3. Pilih variasi/durasi produk', '│ 4. Tekan tombol 🛒 Beli', '│ 5. Scan QRIS yang dikirim bot', '│ 6. Nominal QRIS otomatis sesuai harga', '│ 7. Setelah bayar, tekan ✅ Saya sudah membayar', '│ 8. Tunggu admin accept pembayaran', '│ 9. Jika sudah di-ACC, stok/data akun dikirim otomatis', '╰───────────────────────╯', '', 'Jika ada kendala, tekan tombol Bantuan untuk chat owner.'].join('\n'), mainMenu(ctx));
 });
 
 bot.hears(['Bantuan', '💬 Bantuan'], async (ctx) => {
