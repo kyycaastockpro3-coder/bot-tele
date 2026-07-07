@@ -317,12 +317,12 @@ const variantKeyboard = (group) => Markup.inlineKeyboard([
 
 const productDetailButtons = (product) => Markup.inlineKeyboard([
   [Markup.button.callback(`🛒 Beli ${productIcon(product)}`, `buy:${product.id}`)],
-  [Markup.button.callback('⬅️ Kembali ke Katalog', 'catalog:list'), Markup.button.callback('💬 Tanya Owner', 'contact_owner')]
+  [Markup.button.callback('⬅️ Kembali ke Katalog', 'catalog:list'), ownerButton('💬 Tanya Owner')]
 ]);
 
 const paymentButtons = (orderId) => Markup.inlineKeyboard([
   [Markup.button.callback('✅ Saya sudah membayar', `paid:${orderId}`)],
-  [Markup.button.callback('❌ Cancel', `cancel_order:${orderId}`), ownerUrl ? Markup.button.url('💬 Tanya Owner', ownerUrl) : Markup.button.callback('💬 Tanya Owner', 'contact_owner')]
+  [Markup.button.callback('❌ Cancel', `cancel_order:${orderId}`), ownerButton('💬 Tanya Owner')]
 ]);
 
 const formatStockList = (product) => {
@@ -426,17 +426,13 @@ const mainMenu = (ctx) => {
   return Markup.inlineKeyboard(rows);
 };
 
-const ownerButtons = () => {
-  if (!ownerUrl) {
-    return Markup.inlineKeyboard([
-      Markup.button.callback('💬 Pesan Owner', 'contact_owner')
-    ]);
-  }
+const ownerButton = (label = '💬 Pesan Owner') => ownerUrl
+  ? Markup.button.url(label, ownerUrl)
+  : Markup.button.callback(label, 'contact_owner');
 
-  return Markup.inlineKeyboard([
-    Markup.button.url('💬 Pesan Owner', ownerUrl)
-  ]);
-};
+const ownerButtons = () => Markup.inlineKeyboard([
+  ownerButton()
+]);
 
 const welcomeMessage = () => [
   `👋 Halo, selamat datang di ${storeName}!`,
@@ -506,7 +502,7 @@ bot.action('menu:guide', async (ctx) => {
 
 bot.action('menu:help', async (ctx) => {
   await ctx.answerCbQuery('Memuat...');
-  await editOrReply(ctx, '💬 Butuh bantuan? Tekan tombol owner di bawah.', Markup.inlineKeyboard([[ownerUrl ? Markup.button.url('💬 Pesan Owner', ownerUrl) : Markup.button.callback('💬 Pesan Owner', 'contact_owner')], [Markup.button.callback('⬅️ Kembali', 'menu:home')]]));
+  await editOrReply(ctx, '💬 Butuh bantuan? Tekan tombol owner di bawah.', Markup.inlineKeyboard([[ownerButton('💬 Pesan Owner')], [Markup.button.callback('⬅️ Kembali', 'menu:home')]]));
 });
 
 bot.action('menu:orders', async (ctx) => {
